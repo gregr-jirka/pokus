@@ -23,6 +23,7 @@
         nav .menu { display: flex; list-style: none; margin: 0; padding: 0; }
         nav .menu li a { display: block; margin: 0 15px; text-decoration: none; color: var(--text-dark); font-weight: bold; font-size: 1.1em; }
         #menu-toggle { display: none; } .menu-button-container { display: none; }
+        
         #hero { height: 100vh; position: relative; overflow: hidden; color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background-color: var(--text-dark); }
         .slideshow-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
         .mySlides { display: none; width: 100%; height: 100%; background-size: contain; background-repeat: no-repeat; background-position: center; animation-name: fade; animation-duration: 1.5s; }
@@ -36,7 +37,6 @@
         .feature-item { padding: 20px; }
         .feature-item h3 { color: var(--accent); }
         
-        /* NOVÉ STYLY PRO SEKCI "O MNĚ" */
         .about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; text-align: left; margin: 50px 0; }
         .about-item h3 { color: var(--accent); border-left: 3px solid var(--accent); padding-left: 10px; }
         .personal-note { max-width: 800px; margin: 30px auto; padding: 20px; border-left: 3px solid #ccc; font-style: italic; text-align: left; }
@@ -53,9 +53,15 @@
         .service-card { background: #ffffff; border: 1px solid #e1e1e1; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.05); transition: box-shadow 0.3s, transform 0.3s; }
         .service-card:hover { transform: translateY(-5px); box-shadow: 0 8px 16px rgba(0,0,0,0.1); }
         .service-card h3 { color: var(--accent); }
-        .contact-form { max-width: 600px; margin: 0 auto; text-align: left; }
-        .contact-form input, .contact-form textarea { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
-        .contact-form .button { width: 100%; border: none; cursor: pointer; }
+        
+        .contact-info { margin-bottom: 40px; line-height: 1.8; font-size: 1.1em; }
+        .social-icons { margin-top: 20px; }
+        .social-icons a { color: var(--text-dark); text-decoration: none; margin: 0 15px; }
+        .social-icons a:hover { color: var(--accent); }
+        .social-icons svg { width: 32px; height: 32px; }
+        .contact-container { display: flex; flex-wrap: wrap; gap: 40px; justify-content: center; text-align: left;}
+        .contact-details, .contact-form-wrapper { flex: 1; min-width: 300px; max-width: 500px; }
+        
         @media (max-width: 768px) {
             nav { height: 65px; } nav .logo img { height: 45px; }
             .menu-button-container { display: flex; height: 100%; width: 30px; cursor: pointer; flex-direction: column; justify-content: center; align-items: center; }
@@ -71,45 +77,76 @@
             #hero { padding: 0 10px; box-sizing: border-box; }
             #hero h1 { font-size: 2.4em; } #hero p { font-size: 1.2em; }
             .button { padding: 12px 24px; font-size: 1.1em; }
-            .credentials-columns { columns: 1; } /* Na mobilu jen jeden sloupec pro výstavy */
+            .credentials-columns { columns: 1; }
         }
     </style>
 </head>
 <body>
     <nav>
-        <a href="#" class="logo">
-            <img src="logo.png" alt="Poetik Foto Logo">
-        </a>
+        <a href="#hero" class="logo"><img src="logo.png" alt="Poetik Foto Logo"></a>
         <input id="menu-toggle" type="checkbox" />
-        <label class='menu-button-container' for="menu-toggle">
-            <div class='menu-button'></div>
-        </label>
+        <label class='menu-button-container' for="menu-toggle"><div class='menu-button'></div></label>
         <ul class="menu">
             <li><a href="#uvod">Úvod</a></li>
             <li><a href="#about">O mně</a></li>
-            <li><a href="#portfolio">Portfolio</a></li>
             <li><a href="#services">Služby</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
             <li><a href="#contact">Kontakt</a></li>
         </ul>
     </nav>
 
     <section id="hero">
-        </section>
+        <div class="slideshow-container">
+            <div class="mySlides fade" style="background-image: url('slide1.webp');"></div>
+            <div class="mySlides fade" data-src="slide2.webp"></div>
+            <div class="mySlides fade" data-src="slide3.webp"></div>
+            <div class="mySlides fade" data-src="slide4.webp"></div>
+            <div class="mySlides fade" data-src="slide5.webp"></div>
+            <div class="mySlides fade" data-src="slide6.webp"></div>
+            <div class="mySlides fade" data-src="slide7.webp"></div>
+            <div class="mySlides fade" data-src="slide8.webp"></div>
+            <div class="mySlides fade" data-src="slide9.webp"></div>
+            <div class="mySlides fade" data-src="slide10.webp"></div>
+            <div class="mySlides fade" data-src="slide11.webp"></div>
+        </div>
+        <div class="hero-text">
+            <h1>Zachytím vaše neopakovatelné okamžiky</h1>
+            <p>Fine art, portrétní a svatební fotografie s duší</p>
+            <a href="#portfolio" class="button">Prohlédnout portfolio</a>
+        </div>
+    </section>
     
     <section id="uvod" class="section">
-        </section>
+        <div class="container">
+            <h2>Fotografie s duší a romantikou</h2>
+            <p>Vítejte! Jsem **Jiří Grégr**, fotograf s vášní pro zachycení autentických příběhů a neopakovatelných okamžiků. Moje fotografie nejsou jen pouhými snímky; mají svůj vlastní příběh a jedinečnou atmosféru. Samotné focení je zážitek, kde místo nucených póz zachycujeme přirozené momenty plné emocí.</p>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <h3>Osobní přístup</h3>
+                    <p>Ke každému projektu přistupuji s maximální péčí a porozuměním vašim představám, abychom společně vytvořili něco skutečně výjimečného.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Autentické emoce</h3>
+                    <p>Mým cílem je zachytit vaše pravé emoce a vytvořit fotografie, které vyprávějí váš příběh s hloubkou a citem.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Kvalita a profesionalita</h3>
+                    <p>Nabízím nejen technickou dokonalost, ale i kreativní vizi, která se odráží v každém snímku, od přípravy až po finální úpravu.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <section id="about" class="section section-colored">
         <div class="container">
             <h2>Pár slov o mé maličkosti</h2>
             <div class="personal-note">
-                <p>Psát o sobě není jednoduché, ale tuším, že to očekáváte[cite: 1]. Proto jsem tento bod trochu "ošidil" a nechal AI prozkoumat mou digitální stopu[cite: 2]. Informace jsou relevantní, ale pokud nabudete dojmu, že jsem nové převtělení da Vinciho, tak to (doufám) není tak úplná pravda[cite: 3]. Nicméně, proč se nesnažit přiblížit nejvyšším metám? [cite: 4]</p>
+                <p>Psát o sobě není jednoduché, ale tuším, že to očekáváte. Proto jsem tento bod trochu "ošidil" a nechal AI prozkoumat mou digitální stopu. Informace jsou relevantní, ale pokud nabudete dojmu, že jsem nové převtělení da Vinciho, tak to (doufám) není tak úplná pravda. Nicméně, proč se nesnažit přiblížit nejvyšším metám?</p>
             </div>
-            
             <div class="about-grid">
                 <div class="about-item">
                     <h3>Umělec s duší romantika</h3>
-                    <p>Jsem mnohostranná osobnost, která spojuje technickou preciznost s hlubokým uměleckým cítěním[cite: 5]. Jako fotograf se specializuji na "fotografie s duší a romantikou"[cite: 6]. Díky zázemí IT specialisty dokážu snímky stylizovat do poeticky pohádkového světa, kde se technika snoubí s vizí[cite: 7].</p>
+                    <p>Jsem mnohostranná osobnost, která spojuje technickou preciznost s hlubokým uměleckým cítěním. Jako fotograf se specializuji na "fotografie s duší a romantikou". Díky zázemí IT specialisty dokážu snímky stylizovat do poeticky pohádkového světa, kde se technika snoubí s vizí.</p>
                 </div>
                 <div class="about-item">
                     <h3>Mistr detailu a trpělivosti</h3>
@@ -117,28 +154,27 @@
                 </div>
                 <div class="about-item">
                     <h3>Snílek s pevným zázemím</h3>
-                    <p>Kromě umění působím jako IT specialista v dětské psychiatrické nemocnici a jsem spoluvlastníkem lékařské kliniky[cite: 11]. Tyto profese mi dávají stabilní základ a balanc k mé tvorbě. Sám sebe vidím jako věčného snílka a romantika, pro kterého je tvoření součástí života[cite: 12].</p>
+                    <p>Kromě umění působím jako IT specialista v dětské psychiatrické nemocnici a jsem spoluvlastníkem lékařské kliniky. Tyto profese mi dávají stabilní základ a balanc k mé tvorbě. Sám sebe vidím jako věčného snílka a romantika, pro kterého je tvoření součástí života.</p>
                 </div>
             </div>
-
             <div class="credentials">
                 <h3>Výstavy a uznání</h3>
                 <div class="credentials-columns">
                     <ul>
-                        <li>„Slovem a obrazem“ – Kavárna Adrinela, Brno 2015 [cite: 13]</li>
-                        <li>„Než nás pozvou do Paříže I.“ – Knihovna J. Mahena, Brno 2016 [cite: 13, 14]</li>
-                        <li>„Než nás pozvou do Paříže II.“ – Knihovna J. Mahena, Brno 2016/2017 [cite: 15]</li>
-                        <li>„Štětcem, slovem, objektivem“ – Knihovna J. Mahena, Brno 2018 [cite: 15]</li>
-                        <li>„Obrázky smyslné i nesmyslné“ – Galerie M+M, Hranice 2019 [cite: 15]</li>
-                        <li>„Obrázky smyslné i nesmyslné II.“ – Čechův dům, Žďár n. S. 2020 </li>
-                        <li>„Ženo, tvé jméno je růže“ – Knihovna J. Mahena, Brno 2020 </li>
-                        <li>„První salon výtvarníků“ – Hranice 2020 </li>
-                        <li>„Poetika tvorby“ – Jihlava 2020 </li>
-                        <li>„Salon výtvarníků“ – Hranice 2021 </li>
-                        <li>„Poetika tvorby“ – Velká Bíteš 2021 </li>
-                        <li>„Očima a objektivem romantika“ – Brno 2023 </li>
-                        <li>„Salon výtvarníků“ – Hranice 2023 </li>
-                        <li>„Žena – věčná inspirace“ Nikolčice 2024 </li>
+                        <li>„Slovem a obrazem“ – Kavárna Adrinela, Brno 2015</li>
+                        <li>„Než nás pozvou do Paříže I.“ – Knihovna J. Mahena, Brno 2016</li>
+                        <li>„Než nás pozvou do Paříže II.“ – Knihovna J. Mahena, Brno 2016/2017</li>
+                        <li>„Štětcem, slovem, objektivem“ – Knihovna J. Mahena, Brno 2018</li>
+                        <li>„Obrázky smyslné i nesmyslné“ – Galerie M+M, Hranice 2019</li>
+                        <li>„Obrázky smyslné i nesmyslné II.“ – Čechův dům, Žďár n. S. 2020</li>
+                        <li>„Ženo, tvé jméno je růže“ – Knihovna J. Mahena, Brno 2020</li>
+                        <li>„První salon výtvarníků“ – Hranice 2020</li>
+                        <li>„Poetika tvorby“ – Jihlava 2020</li>
+                        <li>„Salon výtvarníků“ – Hranice 2021</li>
+                        <li>„Poetika tvorby“ – Velká Bíteš 2021</li>
+                        <li>„Očima a objektivem romantika“ – Brno 2023</li>
+                        <li>„Salon výtvarníků“ – Hranice 2023</li>
+                        <li>„Žena – věčná inspirace“ Nikolčice 2024</li>
                     </ul>
                 </div>
                 <div class="publication">
@@ -146,25 +182,105 @@
                     <p>FEMME REBELLE MAGAZINE: V letech 2024-2025 byly mé práce 3x publikovány v tomto britském magazínu.</p>
                 </div>
             </div>
-
         </div>
     </section>
 
+    <section id="services" class="section">
+        <div class="container">
+            <h2>Co nabízím</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Fine Art & Fantasy</h3>
+                    <p>Originální umělecké focení na míru vaší představě. Vytvoříme spolu snový svět, kde se stanete hlavní postavou. Ideální jako jedinečný zážitek nebo dárek.</p>
+                    <p><strong>Cena od: 4 000 Kč</strong></p>
+                    <a href="#contact" class="button" style="display: block; margin-top: 20px; text-align: center;">Poptat termín</a>
+                </div>
+                <div class="service-card">
+                    <h3>Portrétní focení</h3>
+                    <p>Focení v exteriéru nebo ateliéru. Zvýrazníme vaši přirozenou krásu a osobnost. Profesionální portréty pro osobní i komerční účely. Doba focení cca 2 hodiny.</p>
+                    <p><strong>Cena od: 3 000 Kč</strong></p>
+                    <a href="#contact" class="button" style="display: block; margin-top: 20px; text-align: center;">Chci portrét</a>
+                </div>
+                <div class="service-card">
+                    <h3>Svatební příběh</h3>
+                    <p>Zvěčním emoce a neopakovatelné momenty vašeho velkého dne. Od příprav až po první tanec. Výsledkem jsou autentické a umělecky laděné fotografie.</p>
+                    <p><strong>Cena od: 15 000 Kč</strong></p>
+                     <a href="#contact" class="button" style="display: block; margin-top: 20px; text-align: center;">Domluvit focení</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <section id="portfolio" class="section">
-        </section>
-
-    <section id="services" class="section section-colored">
-        </section>
+    <section id="portfolio" class="section section-colored">
+        <div class="container">
+            <h2>Moje práce</h2>
+            <div class="portfolio-grid">
+                <img src="portfolio1.webp" alt="Fine art fotografie">
+            </div>
+        </div>
+    </section>
 
     <section id="contact" class="section">
-        </section>
+        <div class="container">
+            <h2>Kontaktujte mě</h2>
+            <div class="contact-container">
+                <div class="contact-details">
+                    <h3>Spojte se se mnou</h3>
+                    <div class="contact-info">
+                        <strong>Jiří Grégr</strong><br>
+                        U Stadionu 238<br>
+                        595 01 Velká Bíteš<br><br>
+                        Tel: <a href="tel:+420603477805">603 477 805</a><br>
+                        Mail: <a href="mailto:gregr.jirka@gmail.com">gregr.jirka@gmail.com</a>
+                    </div>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/poetik.foto/" target="_blank" aria-label="Facebook">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z"></path></svg>
+                        </a>
+                        <a href="https://www.instagram.com/fairy_art_photographer/" target="_blank" aria-label="Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c2.717 0 3.056.01 4.122.06 1.065.05 1.79.217 2.428.465.66.254 1.216.598 1.772 1.153a4.902 4.902 0 0 1 1.153 1.772c.247.637.415 1.363.465 2.428.047 1.066.06 1.405.06 4.122 0 2.717-.01 3.056-.06 4.122-.05 1.065-.218 1.79-.465 2.428a4.883 4.883 0 0 1-1.153 1.772 4.915 4.915 0 0 1-1.772 1.153c-.637.247-1.363.415-2.428.465-1.066.047-1.405.06-4.122.06-2.717 0-3.056-.01-4.122-.06-1.065-.05-1.79-.218-2.428-.465a4.89 4.89 0 0 1-1.772-1.153 4.904 4.904 0 0 1-1.153-1.772c-.248-.637-.415-1.363-.465-2.428C2.013 15.056 2 14.717 2 12c0-2.717.01-3.056.06-4.122.05-1.066.217-1.79.465-2.428a4.88 4.88 0 0 1 1.153-1.772A4.897 4.897 0 0 1 5.45 2.525c.638-.248 1.362-.415 2.428-.465C8.944 2.013 9.283 2 12 2zm0 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm6.5-.25a1.25 1.25 0 0 0-2.5 0 1.25 1.25 0 0 0 2.5 0zM12 9a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"></path></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="contact-form-wrapper">
+                    <h3>Napište mi zprávu</h3>
+                    <form class="contact-form" action="#" method="POST">
+                        <input type="text" name="name" placeholder="Vaše jméno" required>
+                        <input type="email" name="email" placeholder="Váš e-mail" required>
+                        <textarea name="message" rows="5" placeholder="Vaše zpráva..." required></textarea>
+                        <button type="submit" class="button">Odeslat poptávku</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <footer>
-        </footer>
+        <p>&copy; 2025 Poetik Foto - Jiří Grégr | Vytvořeno s vášní pro krásné momenty</p>
+        <p>IČO: [Vaše IČO]</p>
+    </footer>
 
     <script>
-        // ...
+        let slideIndex = 0;
+        showSlides();
+        function showSlides() {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            if (slides.length === 0) return;
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) { slideIndex = 1 }    
+            let currentSlide = slides[slideIndex - 1];
+            const imageSrc = currentSlide.getAttribute('data-src');
+            if (imageSrc) {
+                currentSlide.style.backgroundImage = `url('${imageSrc}')`;
+                currentSlide.removeAttribute('data-src');
+            }
+            currentSlide.style.display = "block";  
+            setTimeout(showSlides, 5000); 
+        }
     </script>
 </body>
 </html>
