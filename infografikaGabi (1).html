@@ -1,268 +1,117 @@
-﻿<!DOCTYPE html>
-<html lang="cs" class="scroll-smooth">
+<!DOCTYPE html>
+<html lang="cs">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Infografika: Franšíza Smart Network</title>
-    <!-- Chosen Palette: Smart Network Rainbow (based on logo) -->
-    <!-- Application Structure Plan: A single-page, vertical infographic layout that tells a story from top to bottom. It guides the user through a clear, linear path: 1. The Core Idea, 2. The Unfair Advantage (Benefits), 3. The Path to Success (Package Details visualized as steps), 4. The Ideal Partner Profile, and 5. The Final Call to Action. This structure is ideal for an infographic, as it uses visual flow (connecting lines, sequential blocks) to make complex information easily digestible and memorable. -->
-    <!-- Visualization & Content Choices: The qualitative information is transformed into visual metaphors. Report Info (Benefits) -> Goal (Compare) -> Viz/Method (Icon-based pillars with brand colors) -> Justification (Strong visual anchors reflecting the brand). Report Info (Package) -> Goal (Show process/support) -> Viz/Method (A vertical, connected timeline/path with brand colors) -> Interaction (Scroll-triggered animations) -> Justification (Creates a narrative of the support journey). Report Info (Partner Profile) -> Goal (Qualify) -> Viz/Method (Visual checklist with icons) -> Justification (Quickly scannable and engaging). All icons are Unicode. Library/Method: Vanilla JS for scroll animations, Tailwind CSS for styling. -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>Poetik Foto - Svatební a portrétní fotograf</title>
     <style>
-        /* Smart Network Brand Colors */
-        :root {
-            --sn-purple: #6c3a8e;
-            --sn-pink: #d81e5b;
-            --sn-orange: #e67e22;
-            --sn-yellow: #f1c40f;
-            --sn-green: #27ae60;
-            --sn-blue: #3498db;
-            --sn-teal: #00A7E1;
-        }
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #ffffff;
-        }
-        h1, h2, h3, .font-title {
-            font-family: 'Montserrat', sans-serif;
-        }
-        .infographic-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        .rainbow-text {
-            background: linear-gradient(90deg, var(--sn-purple), var(--sn-pink), var(--sn-orange), var(--sn-yellow), var(--sn-green), var(--sn-blue));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-fill-color: transparent;
-        }
-        .timeline-item {
-            position: relative;
-            padding-left: 50px;
-            padding-bottom: 40px;
-        }
-        .timeline-item:last-child {
-            padding-bottom: 0;
-        }
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: 15px;
-            top: 5px;
-            width: 4px;
-            height: 100%;
-            background-color: #eef2f5;
-        }
-        .timeline-item:last-child::before {
-            height: 0;
-        }
-        .timeline-icon {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        /* Základní styly pro lepší čitelnost - později budou v samostatném souboru */
+        body { font-family: sans-serif; line-height: 1.6; margin: 0; color: #333; }
+        .section { padding: 60px 20px; text-align: center; }
+        .section h2 { font-size: 2.5em; margin-bottom: 40px; }
+        .container { max-width: 1100px; margin: 0 auto; }
+        nav { background: #fff; padding: 15px; text-align: center; position: fixed; width: 100%; top: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); z-index: 1000;}
+        nav a { margin: 0 15px; text-decoration: none; color: #333; font-weight: bold; }
+        #hero {
+            background: url('https://via.placeholder.com/1500x800.png?text=Vaše+Nejlepší+Fotka') no-repeat center center/cover; /* Prozatímní obrázek */
+            height: 100vh;
             color: white;
-            font-size: 18px;
-            border: 3px solid #eef2f5;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
-        .fade-in-section {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        .fade-in-section.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .css-logo {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            position: relative;
-            overflow: hidden;
-            flex-shrink: 0;
-            background: linear-gradient(-38deg,
-                transparent 2%,
-                var(--sn-blue) 2%, var(--sn-blue) 12%,
-                transparent 12%, transparent 14%,
-                var(--sn-purple) 14%, var(--sn-purple) 28%,
-                transparent 28%, transparent 30%,
-                var(--sn-pink) 30%, var(--sn-pink) 44%,
-                transparent 44%, transparent 46%,
-                var(--sn-orange) 46%, var(--sn-orange) 60%,
-                transparent 60%, transparent 62%,
-                var(--sn-yellow) 62%, var(--sn-yellow) 78%,
-                transparent 78%, transparent 80%,
-                var(--sn-green) 80%, var(--sn-green) 95%,
-                transparent 95%
-            );
-        }
+        #hero h1 { font-size: 4em; margin: 0; }
+        #hero p { font-size: 1.5em; }
+        .button { background: #c0392b; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-size: 1.2em; }
+        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; }
+        .portfolio-grid img { width: 100%; height: auto; border-radius: 5px; }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; text-align: left; }
+        .service-card { border: 1px solid #ddd; padding: 20px; border-radius: 5px; }
+        .contact-form { max-width: 600px; margin: 0 auto; text-align: left; }
+        .contact-form input, .contact-form textarea { width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 3px; }
+        footer { background: #333; color: white; text-align: center; padding: 20px; }
     </style>
 </head>
-<body class="text-gray-800">
+<body>
 
+    <nav>
+        <a href="#about">O mně</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#services">Služby</a>
+        <a href="#contact">Kontakt</a>
+    </nav>
 
-    <div class="infographic-container p-4 md:p-8">
-        
-        <!-- Header -->
-        <header class="text-center py-12 fade-in-section">
-            <div class="flex justify-center items-center gap-4 mb-8">
-                <div class="css-logo shadow-lg"></div>
-                <div class="text-left">
-                    <p class="font-title text-gray-500 text-lg">Podnikatelský klub</p>
-                    <h2 class="font-title font-black text-3xl text-gray-800">Smart Network®</h2>
+    <section id="hero">
+        <h1>Zachytím vaše neopakovatelné okamžiky</h1>
+        <p>Svatební a portrétní fotografie s duší</p>
+        <a href="#portfolio" class="button">Prohlédnout portfolio</a>
+    </section>
+
+    <section id="about" class="section">
+        <div class="container">
+            <h2>Můj příběh</h2>
+            <p style="max-width: 700px; margin: 0 auto;">Vítejte na mém webu! Jmenuji se [Vaše Jméno] a fotografie je moje vášeň. Specializuji se na zachycení autentických emocí a přirozených momentů. Rád vyprávím příběhy skrze objektiv a mým cílem je, abyste se při pohledu na mé fotky smáli i plakali dojetím.</p>
+        </div>
+    </section>
+
+    <section id="portfolio" class="section" style="background: #f4f4f4;">
+        <div class="container">
+            <h2>Moje práce</h2>
+            <div class="portfolio-grid">
+                <img src="https://via.placeholder.com/400x300.png?text=Svatba+1" alt="Svatební fotografie">
+                <img src="https://via.placeholder.com/400x300.png?text=Portrét+1" alt="Portrétní fotografie">
+                <img src="https://via.placeholder.com/400x300.png?text=Svatba+2" alt="Svatební fotografie">
+                <img src="https://via.placeholder.com/400x300.png?text=Rodina+1" alt="Rodinná fotografie">
+                <img src="https://via.placeholder.com/400x300.png?text=Svatba+3" alt="Svatební fotografie">
+                <img src="https://via.placeholder.com/400x300.png?text=Portrét+2" alt="Portrétní fotografie">
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="section">
+        <div class="container">
+            <h2>Co nabízím</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Svatební focení</h3>
+                    <p>Celodenní reportáž od příprav až po večerní zábavu. Získáte stovky upravených fotografií a nezapomenutelnou vzpomínku.</p>
+                    <p><strong>Cena od: 15 000 Kč</strong></p>
+                    <a href="#contact" class="button" style="display: inline-block; margin-top: 10px;">Poptat termín</a>
+                </div>
+                <div class="service-card">
+                    <h3>Portrétní focení</h3>
+                    <p>Focení v exteriéru nebo ateliéru. Ideální pro jednotlivce, páry nebo pro vaše profesní portfolio. Doba focení cca 2 hodiny.</p>
+                    <p><strong>Cena od: 3 000 Kč</strong></p>
+                    <a href="#contact" class="button" style="display: inline-block; margin-top: 10px;">Chci portrét</a>
+                </div>
+                <div class="service-card">
+                    <h3>Rodinné focení</h3>
+                    <p>Zvěčněte své rodinné štěstí. Focení probíhá formou procházky nebo u vás doma, v přirozeném prostředí. Výsledkem jsou autentické fotky.</p>
+                    <p><strong>Cena od: 2 500 Kč</strong></p>
+                     <a href="#contact" class="button" style="display: inline-block; margin-top: 10px;">Domluvit focení</a>
                 </div>
             </div>
-            <h1 class="text-4xl md:text-6xl font-black uppercase rainbow-text">Cesta k vašemu<br>vlastnímu klubu</h1>
-            <p class="text-lg text-gray-600 mt-4 max-w-2xl mx-auto">Vizuální průvodce vaší příležitostí stát se lídrem byznysu ve vašem městě.</p>
-        </header>
+        </div>
+    </section>
 
+    <section id="contact" class="section" style="background: #f4f4f4;">
+        <div class="container">
+            <h2>Napište mi</h2>
+            <p>Máte dotaz nebo si chcete rovnou rezervovat termín? Neváhejte mě kontaktovat!</p>
+            <form class="contact-form">
+                <input type="text" name="name" placeholder="Vaše jméno" required>
+                <input type="email" name="email" placeholder="Váš e-mail" required>
+                <textarea name="message" rows="5" placeholder="Vaše zpráva..." required></textarea>
+                <button type="submit" class="button">Odeslat poptávku</button>
+            </form>
+        </div>
+    </section>
 
-        <!-- Section 1: The Unfair Advantage -->
-        <section class="fade-in-section bg-gray-50 p-8 rounded-2xl shadow-lg mb-12">
-            <h2 class="text-center text-3xl font-extrabold text-gray-900 mb-2">Získejte nefér výhodu</h2>
-            <p class="text-center text-gray-600 mb-8">4 pilíře vašeho úspěchu s námi:</p>
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
-                <div class="p-4">
-                    <div class="text-6xl mb-3" style="color: var(--sn-purple);">🏆</div>
-                    <h3 class="font-bold text-lg">Okamžitá prestiž</h3>
-                    <p class="text-sm text-gray-600">Ověřená značka, která otevírá dveře.</p>
-                </div>
-                <div class="p-4">
-                    <div class="text-6xl mb-3" style="color: var(--sn-pink);">💡</div>
-                    <h3 class="font-bold text-lg">Recept na zisk</h3>
-                    <p class="text-sm text-gray-600">Funkční know-how bez slepých uliček.</p>
-                </div>
-                <div class="p-4">
-                    <div class="text-6xl mb-3" style="color: var(--sn-green);">🤝</div>
-                    <h3 class="font-bold text-lg">Svoboda a jistota</h3>
-                    <p class="text-sm text-gray-600">Podnikejte pro sebe, ale ne sami.</p>
-                </div>
-                <div class="p-4">
-                    <div class="text-6xl mb-3" style="color: var(--sn-blue);">🚀</div>
-                    <h3 class="font-bold text-lg">Marketingový motor</h3>
-                    <p class="text-sm text-gray-600">Podpora a nástroje pro rychlý start.</p>
-                </div>
-            </div>
-        </section>
-
-
-        <!-- Section 2: The Path to Success (Package) -->
-        <section class="fade-in-section bg-white p-8 rounded-2xl shadow-lg mb-12">
-            <h2 class="text-center text-3xl font-extrabold text-gray-900 mb-8">Vaše cesta k úspěchu: Co vše získáte</h2>
-            <div class="relative">
-                <div class="timeline-item">
-                    <div class="timeline-icon" style="background-color: var(--sn-purple);">🗺️</div>
-                    <h3 class="font-bold text-xl mb-1">Krok 1: Exkluzivní licence</h3>
-                    <p class="text-gray-600">Získáte výhradní práva pro vaše město. Žádná interní konkurence, jen čistý potenciál pro váš růst.</p>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-icon" style="background-color: var(--sn-pink);">📘</div>
-                    <h3 class="font-bold text-xl mb-1">Krok 2: Kompletní know-how</h3>
-                    <p class="text-gray-600">Předáme vám naše kompletní provozní a obchodní manuály. Je to naše DNA a váš detailní návod na úspěch.</p>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-icon" style="background-color: var(--sn-yellow);">🛠️</div>
-                    <h3 class="font-bold text-xl mb-1">Krok 3: Nástroje a materiály</h3>
-                    <p class="text-gray-600">Od digitálního zázemí (web, appka) přes marketingové materiály (roll-up, letáky) až po právní dokumenty. Vše je připraveno.</p>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-icon" style="background-color: var(--sn-green);">🎓</div>
-                    <h3 class="font-bold text-xl mb-1">Krok 4: Vzdělávání a mentoring</h3>
-                    <p class="text-gray-600">Absolvujete prestižní workshopy a semináře. A co víc, získáte 3 měsíce osobního mentoringu přímo od zakladatelky.</p>
-                </div>
-            </div>
-            <div class="mt-8 text-center bg-gray-50 border-2 border-dashed border-gray-200 p-6 rounded-xl">
-                <p class="text-lg font-semibold text-gray-700">Celková hodnota startovacího balíčku:</p>
-                <p class="text-4xl font-black" style="color: var(--sn-blue);">300 000 Kč</p>
-            </div>
-        </section>
-
-
-        <!-- Section 3: Ideal Partner -->
-        <section class="fade-in-section bg-white p-8 rounded-2xl shadow-lg mb-12">
-            <h2 class="text-center text-3xl font-extrabold text-gray-900 mb-2">Hledáme parťáka. Jste to vy?</h2>
-            <p class="text-center text-gray-600 mb-8">Poznáváte se v těchto bodech?</p>
-            <ul class="space-y-4 max-w-xl mx-auto">
-                <li class="flex items-center bg-gray-50 p-4 rounded-lg">
-                    <span class="text-3xl mr-4">🔥</span>
-                    <p>Máte v sobě <strong class="font-semibold">podnikatelský oheň</strong> a talent propojovat lidi.</p>
-                </li>
-                <li class="flex items-center bg-gray-50 p-4 rounded-lg">
-                    <span class="text-3xl mr-4">⭐</span>
-                    <p>Jste <strong class="font-semibold">spolehlivá osobnost</strong> s dobrým jménem a chutí budovat komunitu.</p>
-                </li>
-                <li class="flex items-center bg-gray-50 p-4 rounded-lg">
-                    <span class="text-3xl mr-4">💬</span>
-                    <p><strong class="font-semibold">Milujete komunikaci,</strong> nebojíte se výzev a chcete být vidět.</p>
-                </li>
-                 <li class="flex items-center bg-gray-50 p-4 rounded-lg">
-                    <span class="text-3xl mr-4">💰</span>
-                    <p>Máte <strong class="font-semibold">energii a finanční rezervu</strong> pro rozjezd něčeho velkého.</p>
-                </li>
-            </ul>
-        </section>
-
-
-        <!-- Section 4: CTA -->
-        <section class="fade-in-section bg-gray-800 text-white p-10 rounded-2xl shadow-lg text-center">
-            <h2 class="text-4xl font-black uppercase mb-4">Start vaší cesty</h2>
-            <p class="text-lg text-gray-300 max-w-2xl mx-auto mb-8">Příležitosti nečekají. Udělejte první krok ještě dnes. Domluvme si nezávaznou online schůzku.</p>
-            <div class="bg-white text-gray-800 p-6 rounded-xl max-w-md mx-auto mb-6">
-                <p class="font-bold">Ing. Gabriela Mrkvicová</p>
-                <p class="text-sm text-gray-600">zakladatelka Smart Network</p>
-                <div class="mt-4 flex justify-center space-x-6">
-                     <a href="tel:+420775649843" class="text-3xl text-gray-600 hover:text-teal-500 transition-colors" style="--sn-teal: #00A7E1;">📞</a>
-                     <a href="mailto:mrkvicova@smart-network.cz" class="text-3xl text-gray-600 hover:text-teal-500 transition-colors" style="--sn-teal: #00A7E1;">✉️</a>
-                     <a href="https://www.smart-network.cz" target="_blank" class="text-3xl text-gray-600 hover:text-teal-500 transition-colors" style="--sn-teal: #00A7E1;">🌐</a>
-                </div>
-            </div>
-            <a href="mailto:mrkvicova@smart-network.cz?subject=Zájem o franšízu Smart Network (z infografiky)" class="inline-block text-white px-10 py-4 rounded-full font-bold text-lg uppercase transform hover:scale-105 transition-all duration-300 shadow-lg" style="background-color: var(--sn-teal);">Chci nezávaznou konzultaci</a>
-        </section>
-
-
-        <!-- Footer -->
-        <footer class="text-center py-8 text-gray-500 text-sm">
-            <p>&copy; 2025 Smart Network Business Center s.r.o.</p>
-        </footer>
-
-
-    </div>
-
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const sections = document.querySelectorAll('.fade-in-section');
-
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, {
-                threshold: 0.1
-            });
-
-
-            sections.forEach(section => {
-                observer.observe(section);
-            });
-        });
-    </script>
-
+    <footer>
+        <p>&copy; 2025 Poetik Foto | Vytvořeno s láskou</p>
+        <p>IČO: [Vaše IČO] | Telefon: [Váš telefon]</p>
+    </footer>
 
 </body>
 </html>
